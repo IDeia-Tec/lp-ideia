@@ -593,10 +593,17 @@ html:not(.js) .cabecalho__nav {
   );
 }
 
+/*
+ * Nebulosas e estrelas. O SVG vai além do frame de 1440 × 880 (de -720 a 2160
+ * na horizontal): o desfoque das nebulosas some aos poucos, sem borda reta, e
+ * as estrelas se repetem espelhadas dos lados em telas mais largas que 1440 px.
+ */
 .hero__fundo {
-  width: 1440px;
+  --fx: -720px;
+  --fy: -150px;
+  width: 2880px;
   max-width: none;
-  height: 880px;
+  height: 1270px;
 }
 
 .estrela {
