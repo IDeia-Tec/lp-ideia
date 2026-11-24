@@ -994,9 +994,22 @@ html:not(.js) .cabecalho__nav {
 }
 
 @media (min-width: 1024px) {
-  /* Texto 127 px abaixo do centro do palco, como no Figma */
+  /*
+   * O palco ganha 100 px embaixo. Título e subtítulo continuam na posição do
+   * Figma (topo a 230 px do palco) e os botões e o preço descem para depois
+   * da esfera, deixando o planeta, os anéis e as bolhas à mostra.
+   */
+  .hero__palco {
+    height: calc(880px * var(--s) + 100px);
+  }
+
   .hero__conteudo {
-    padding-block: calc(127px * var(--s) + var(--space-40)) var(--space-40);
+    align-self: stretch;
+    padding-block: calc(230px * var(--s)) var(--space-40);
+  }
+
+  .hero__acoes {
+    margin-top: auto;
   }
 
   .hero__personagem {
