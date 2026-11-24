@@ -527,7 +527,7 @@ html:not(.js) .cabecalho__nav {
 /* 02 Banner com anéis planetários */
 
 .hero {
-  --s: 0.5;
+  --s: 0.6;
   position: relative;
   display: grid;
   padding-top: var(--altura-cabecalho);
@@ -933,11 +933,22 @@ html:not(.js) .cabecalho__nav {
   }
 
   .orbita__bolha {
-    scale: 1.25;
+    scale: 1.05;
   }
 
+  /*
+   * No celular a esfera sobe para ficar atrás do título e do subtítulo: o
+   * centro dela (440 px do palco × 0,6) cai no meio desse bloco de texto.
+   */
   .hero__palco {
-    margin-top: var(--space-24);
+    margin-top: -85px;
+  }
+}
+
+/* Telas de 360 px: o título cabe em três linhas, dentro da esfera */
+@media (max-width: 379px) {
+  .hero__titulo {
+    font-size: 2.375rem;
   }
 }
 
@@ -1373,12 +1384,13 @@ html:not(.js) .cabecalho__nav {
   transform-origin: 0 0;
 }
 
+/* Anel de 300 px em volta do 3D, sem passar da borda do card nem do texto abaixo */
 .destaque-card__anel {
   position: absolute;
-  left: -10px;
-  top: -40px;
-  width: 340px;
-  height: 340px;
+  left: 10px;
+  top: -20px;
+  width: 300px;
+  height: 300px;
 }
 
 .destaque-card__3d {
