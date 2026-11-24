@@ -2802,3 +2802,41 @@ html:not(.js) .cabecalho__nav {
     padding-top: calc(var(--altura-cabecalho) + 3rem);
   }
 }
+
+/* Botão flutuante do WhatsApp */
+.whatsapp-flutuante {
+  position: fixed;
+  right: max(var(--space-16), env(safe-area-inset-right));
+  bottom: max(var(--space-16), env(safe-area-inset-bottom));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cta-bg-default);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 45%), 0 0 0 1px rgb(255 255 255 / 12%);
+  transition: background-color var(--motion-dur-rapida) var(--motion-curva-padrao);
+}
+
+.whatsapp-flutuante:hover {
+  background: var(--cta-bg-hover);
+}
+
+.whatsapp-flutuante:active {
+  background: var(--cta-bg-pressed);
+}
+
+.whatsapp-flutuante img {
+  width: 30px;
+  height: 30px;
+}
+
+@media (min-width: 768px) {
+  .whatsapp-flutuante {
+    right: var(--space-24);
+    bottom: var(--space-24);
+    width: 60px;
+    height: 60px;
+  }
+}
