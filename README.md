@@ -4,7 +4,7 @@ Landing page institucional da IDeia. Página estática em HTML e CSS, sem framew
 
 - Plano técnico: https://ideia.atlassian.net/wiki/spaces/PI/pages/3637250
 - Épico no Jira: https://ideia.atlassian.net/browse/IFI-9
-- Design (protótipo v09): Figma `8cGrLRtEjwK6Q3KkjamzSC`
+- Design: Figma `8cGrLRtEjwK6Q3KkjamzSC`, página "LP IDeia · 2.0 · proposta órbita", frame "Site IDeia 2.0 · desktop 1440" (LP 2.0, IFI-72)
 
 ## Estrutura
 
@@ -49,13 +49,21 @@ O script só arredonda coordenadas, renomeia os ids de gradiente e tira espaços
 
 O `apple-touch-icon.png` (180 × 180) fica na raiz porque o iOS procura esse caminho mesmo sem `<link>`.
 
-As ilustrações (`hero`, `boy`, `girl`, `duo`, `3d`) ficam em WebP, em duas larguras cada (o tamanho exibido no desktop e o dobro); a hero tem quatro, de 400 a 1600, porque também aparece no celular. Para trocar, exporte do Figma a camada "Ilustração / ..." do frame de 1440 da página "LP IDeia · v09 · 5 breakpoints" em PNG 2x, salve numa pasta como `hero.png`, `boy.png` etc. e rode (precisa de Pillow). O boy é exceção: no 1440 a camada passa da borda da seção e o Figma exporta cortado, então exporte o componente "IDeia DS/Asset/Menino" da página "IDeia · Design System v1". O PNG certo do boy tem 1080 × 720.
+As ilustrações (`boy`, `girl`, `duo`, `3d`) ficam em WebP, em duas larguras cada (o tamanho exibido no desktop e o dobro). Para trocar, exporte do Figma o componente "IDeia DS/Asset/..." da página "IDeia · Design System v1" em PNG 2x, salve numa pasta como `boy.png`, `girl.png` etc. e rode (precisa de Pillow). O PNG certo do boy tem 1080 × 720.
 
 ```sh
 python3 scripts/gerar-webp.py <pasta-com-os-png>
 ```
 
-O fundo da página a partir de 768 px (`fundo-800`, `fundo-1600`, `fundo-1920` e `fundo-2880`) vem da camada de fundo do frame de 1440, exportada sozinha (sem textos nem personagens) em PNG 2x, salva como `fundo.png` na mesma pasta e processada pelo mesmo script. O CSS escolhe a versão pela densidade da tela com `image-set`. O `fundo-390.webp` do celular é outro recorte e não sai desse script.
+Peças do banner da LP 2.0 (frame "Hero · órbita", 133:20):
+
+- `personagem-notebook-*.webp` e `personagem-bolso-*.webp`: as duas poses em pé, recortadas na área visível do PNG do Figma, na altura original e na metade.
+- `aurora.webp`: a aurora que gira dentro da esfera, reduzida para 420 px porque é toda desfocada. O arquivo já traz os 42% de opacidade do Figma; o contato usa a mesma imagem com opacidade menor.
+- `fundo-espacial.svg`: a camada "Fundo · nebulosas e estrelas", passada pelo `otimizar-svg.py`.
+
+Os anéis tracejados, a esfera, a grade e as estrelas são desenhados em CSS e SVG no próprio `index.html`, com as medidas do Figma.
+
+`fundo-1920.webp` e `hero-1600.webp` só ficam no repositório porque a página `scripts/og/og.html` usa as duas.
 
 A imagem de compartilhamento `assets/img/og-ideia.jpg` (1200 × 630) é um print de `scripts/og/og.html`, que junta a hero e o logo. Se a hero ou o logo mudarem, abra essa página no servidor local com a janela em 1200 × 630, tire o print e salve como JPG.
 
@@ -68,6 +76,14 @@ python3 -m fontTools.varLib.instancer Manrope-VariableFont_wght.ttf wght=400:800
 pyftsubset manrope-400-800.ttf --layout-features='*' --flavor=woff2 --output-file=assets/fonts/manrope-latin.woff2 \
   --unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD"
 ```
+
+## Movimento
+
+Todo o movimento está em `assets/css/estilos.css` (seção 09) e em `assets/js/movimento.js`. As durações vêm das notas amarelas do Figma e ficam em `tokens.css` (`--loop-*`).
+
+- Com "reduzir movimento" ligado no sistema, nada se move e o botão de pausa não aparece.
+- O botão "Pausar animações", no pé do banner, para tudo o que se move sozinho na página.
+- Sem JavaScript, a página aparece estática e completa, com os links do menu visíveis.
 
 ## Checks do CI
 
