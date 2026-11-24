@@ -113,6 +113,13 @@ a {
   background: var(--gradient-titulo);
   -webkit-background-clip: text;
   background-clip: text;
+  /*
+   * O gradiente só pinta dentro da caixa do título. Com a entrelinha curta,
+   * a perna de letras como "g" passava da caixa e sumia na última linha. O
+   * padding estende a caixa e a margem negativa devolve o espaço do layout.
+   */
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
 }
 
 .destaque {
@@ -857,6 +864,8 @@ html:not(.js) .cabecalho__nav {
  * elas podem entrar uma de cada vez sem sumir do recorte do texto.
  */
 .hero__titulo .destaque {
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
   background: linear-gradient(90deg, #1fc8ec 0%, #6974fa 100%);
   -webkit-background-clip: text;
   background-clip: text;
