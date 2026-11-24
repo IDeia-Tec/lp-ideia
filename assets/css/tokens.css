@@ -170,6 +170,44 @@
 
   /* Cores dos efeitos de movimento */
   --color-brilho-cta: rgb(255 255 255 / 22%);
+
+  /*
+   * LP 2.0 (IFI-72). Valores do frame "Site IDeia 2.0 · desktop 1440" (133:5)
+   * e das notas amarelas da página "LP IDeia · 2.0 · proposta órbita".
+   */
+  --color-surface-borda: rgb(20 126 242 / 70%); /* borda de 1,2 px dos cards 2.0 */
+  --color-surface-borda-suave: rgb(20 126 242 / 60%);
+  --color-cyan-fundo: rgb(20 221 243 / 10%); /* selo de seção */
+  --color-cyan-contorno: rgb(20 221 243 / 30%);
+  --color-codigo-numero: #3b5f9a;
+  --color-codigo-chave: #a98bff;
+  --color-codigo-comentario: #6f8fc4;
+  --color-whatsapp: #25d366;
+  --gradient-card-vertical: linear-gradient(180deg, #052252 0%, #00163c 100%);
+  --gradient-nucleo: radial-gradient(circle closest-side, #0b2c70 0%, #061d4d 100%);
+  --shadow-bolha: 0 0 28px rgb(20 221 243 / 45%), 0 22px 44px -18px rgb(0 0 0 / 80%);
+  --shadow-balao: 0 0 12.8px rgb(20 165 255 / 25%), 0 14.4px 32px -14.4px rgb(0 0 0 / 80%);
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --altura-cabecalho: 4.9375rem; /* 79 px */
+
+  /* Ritmos das notas do Figma */
+  --loop-letreiro-frente: 42s;
+  --loop-letreiro-tras: 56s;
+  --loop-aurora-hero: 22s;
+  --loop-aurora-contato: 30s;
+  --loop-anel-quem-somos: 60s;
+  --loop-anel-destaque: 40s;
+  --loop-anel-etapa: 24s;
+  --loop-blob-1: 13s;
+  --loop-blob-2: 11s;
+  --loop-blob-contato: 12s;
+  --loop-flutuar-menino: 5s;
+  --loop-flutuar-menina: 6s;
+  --loop-codigo: 9s;
+  --loop-etapas: 5.4s;
+  --loop-brilho-final: 4.5s;
+  --motion-distancia-secao: 3rem; /* seção sobe 48 px ao entrar */
 }
 
 /*
