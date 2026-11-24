@@ -7,10 +7,9 @@
  * 4. Banner: bolhas seguem os dois anéis e passam por trás da esfera; a grade
  *    acompanha o mouse de leve.
  * 5. Contato: os quatro ícones orbitam a dupla e passam por trás dela.
- * 6. Botão "Pausar animações": para todos os movimentos contínuos (WCAG 2.2.2).
  *
  * Sem este script a página fica estática, com todo o conteúdo e as ações. Com
- * "reduzir movimento" no sistema, os itens 3 a 6 não rodam.
+ * "reduzir movimento" no sistema, os itens 3 a 5 não rodam.
  */
 (function () {
   "use strict";
@@ -129,32 +128,9 @@
     });
   }
 
-  /* 6. Pausa geral */
-  var pausado = false;
-  var botaoPausa = document.querySelector(".pausa");
-  var lacos = [];
-
-  function definirPausa(valor) {
-    pausado = valor;
-    raiz.classList.toggle("pausado", valor);
-    if (botaoPausa) {
-      botaoPausa.setAttribute("aria-pressed", String(valor));
-      botaoPausa.querySelector(".pausa__texto").textContent = valor ? "Retomar animações" : "Pausar animações";
-    }
-    lacos.forEach(function (laco) {
-      laco.atualizar();
-    });
-  }
-
-  if (botaoPausa) {
-    botaoPausa.addEventListener("click", function () {
-      definirPausa(!pausado);
-    });
-  }
-
   /*
-   * Laco de animação que só roda com a área na tela e sem pausa. O relógio de
-   * cada laco só anda enquanto ele roda, então a órbita continua de onde parou.
+   * Laço de animação que só roda com a área na tela. O relógio de cada laço
+   * só anda enquanto ele roda, então a órbita continua de onde parou.
    */
   function criarLaco(area, passo) {
     var visivel = false;
@@ -173,7 +149,7 @@
 
     var laco = {
       atualizar: function () {
-        var deveRodar = visivel && !pausado;
+        var deveRodar = visivel;
         if (deveRodar && quadro === null) {
           anterior = null;
           quadro = window.requestAnimationFrame(rodar);
@@ -196,7 +172,6 @@
       laco.atualizar();
     }
 
-    lacos.push(laco);
     return laco;
   }
 
@@ -226,18 +201,18 @@
     });
 
     criarLaco(hero, function (tempo) {
-        dadosBolhas.forEach(function (d) {
-          var angulo = d.fase + (tempo / d.anel.periodo) * 2 * Math.PI;
-          var dx = d.anel.rx * Math.cos(angulo);
-          var dy = d.anel.ry * Math.sin(angulo);
-          var x = centroX + dx * cosInclinacao - dy * senInclinacao;
-          var y = centroY + dx * senInclinacao + dy * cosInclinacao;
-          var frente = Math.sin(angulo) > 0;
-          d.el.style.setProperty("--x", x.toFixed(1) + "px");
-          d.el.style.setProperty("--y", y.toFixed(1) + "px");
-          d.el.style.setProperty("--profundidade", (0.9 + 0.1 * Math.sin(angulo)).toFixed(3));
-          d.el.classList.toggle("orbita--frente", frente);
-          d.el.classList.toggle("orbita--atras", !frente);
+      dadosBolhas.forEach(function (d) {
+        var angulo = d.fase + (tempo / d.anel.periodo) * 2 * Math.PI;
+        var dx = d.anel.rx * Math.cos(angulo);
+        var dy = d.anel.ry * Math.sin(angulo);
+        var x = centroX + dx * cosInclinacao - dy * senInclinacao;
+        var y = centroY + dx * senInclinacao + dy * cosInclinacao;
+        var frente = Math.sin(angulo) > 0;
+        d.el.style.setProperty("--x", x.toFixed(1) + "px");
+        d.el.style.setProperty("--y", y.toFixed(1) + "px");
+        d.el.style.setProperty("--profundidade", (0.9 + 0.1 * Math.sin(angulo)).toFixed(3));
+        d.el.classList.toggle("orbita--frente", frente);
+        d.el.classList.toggle("orbita--atras", !frente);
       });
     });
 
@@ -245,9 +220,6 @@
     var grade = document.querySelector(".hero__grade");
     if (grade && window.matchMedia("(pointer: fine)").matches) {
       hero.addEventListener("pointermove", function (evento) {
-        if (pausado) {
-          return;
-        }
         var caixa = hero.getBoundingClientRect();
         var px = (evento.clientX - caixa.left) / caixa.width - 0.5;
         var py = (evento.clientY - caixa.top) / caixa.height - 0.5;

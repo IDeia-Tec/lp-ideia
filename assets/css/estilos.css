@@ -903,52 +903,6 @@ html:not(.js) .cabecalho__nav {
   margin-right: var(--space-16);
 }
 
-/* Botão de pausa das animações contínuas (WCAG 2.2.2) */
-.pausa {
-  grid-area: 1 / 1;
-  position: relative;
-  z-index: 7;
-  align-self: end;
-  justify-self: center;
-  display: none;
-  align-items: center;
-  gap: var(--space-8);
-  min-height: var(--target-min);
-  margin-bottom: var(--space-16);
-  padding: 0 var(--space-16);
-  border: 1px solid var(--color-surface-borda);
-  border-radius: 999px;
-  background: rgb(0 16 44 / 70%);
-  color: var(--color-muted);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.pausa:hover {
-  color: var(--color-ink);
-}
-
-.pausa__icone {
-  position: relative;
-  width: 10px;
-  height: 12px;
-  border-inline: 3px solid currentColor;
-}
-
-.pausado .pausa__icone {
-  border: 0;
-  border-left: 10px solid currentColor;
-  border-block: 6px solid transparent;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .js .pausa {
-    display: inline-flex;
-  }
-}
-
 /* Até o tablet os balões encostariam no título: ficam só no desktop */
 @media (max-width: 1023px) {
   .balao {
@@ -1013,9 +967,9 @@ html:not(.js) .cabecalho__nav {
 }
 
 @media (min-width: 1024px) {
-  /* Texto 127 px abaixo do centro do palco, como no Figma; 96 px embaixo para o botão de pausa */
+  /* Texto 127 px abaixo do centro do palco, como no Figma */
   .hero__conteudo {
-    padding-block: calc(127px * var(--s) + 6rem) 6rem;
+    padding-block: calc(127px * var(--s) + var(--space-40)) var(--space-40);
   }
 
   .hero__personagem {
@@ -2314,8 +2268,7 @@ html:not(.js) .cabecalho__nav {
  * 09 Movimento
  *
  * - Tudo que se move de forma contínua só existe com prefers-reduced-motion:
- *   no-preference e para com o botão "Pausar animações" (classe .pausado no
- *   <html>, colocada pelo movimento.js).
+ *   no-preference.
  * - Entradas ao rolar dependem da classe .movimento-ativo (movimento.js). Sem
  *   JavaScript, o conteúdo já aparece no lugar.
  * - Hover e foco funcionam com ou sem movimento reduzido, mas sem deslocamento
@@ -2818,13 +2771,6 @@ html:not(.js) .cabecalho__nav {
   .movimento-ativo .oferta[data-anima].visivel:focus-within {
     transform: translateY(-8px);
     transition-delay: 0ms;
-  }
-
-  /* Pausa geral */
-  .pausado *,
-  .pausado *::before,
-  .pausado *::after {
-    animation-play-state: paused !important;
   }
 }
 

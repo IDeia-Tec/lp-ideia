@@ -81,8 +81,8 @@ pyftsubset manrope-400-800.ttf --layout-features='*' --flavor=woff2 --output-fil
 
 Todo o movimento está em `assets/css/estilos.css` (seção 09) e em `assets/js/movimento.js`. As durações vêm das notas amarelas do Figma e ficam em `tokens.css` (`--loop-*`).
 
-- Com "reduzir movimento" ligado no sistema, nada se move e o botão de pausa não aparece.
-- O botão "Pausar animações", no pé do banner, para tudo o que se move sozinho na página.
+- Com "reduzir movimento" ligado no sistema, nada se move.
+- O letreiro pausa quando o mouse passa por cima.
 - Sem JavaScript, a página aparece estática e completa, com os links do menu visíveis.
 
 ## Checks do CI
