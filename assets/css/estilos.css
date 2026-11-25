@@ -1531,6 +1531,44 @@ html:not(.js) .cabecalho__nav {
   font-weight: var(--fw-extrabold);
 }
 
+/* Link "Ver modelos de sites" no card de sites, aponta para a vitrine */
+.oferta__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: var(--target-min);
+  margin-top: auto;
+  padding-inline: var(--space-16);
+  border: 1.5px solid var(--color-cyan);
+  border-radius: var(--radius-12);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  transition: background-color var(--motion-dur-rapida) var(--motion-curva-padrao);
+}
+
+.oferta__link svg {
+  flex: none;
+  color: var(--color-cyan);
+  transition: transform var(--motion-dur-rapida) var(--motion-curva-padrao);
+}
+
+.oferta__link:hover {
+  background: #0a2a63;
+}
+
+.oferta__link:hover svg {
+  transform: translateX(3px);
+}
+
+.oferta__link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
 /* Mini tela do site */
 .tela-site__pontos {
   left: 11px;
