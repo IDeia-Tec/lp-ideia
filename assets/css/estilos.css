@@ -2437,6 +2437,19 @@ html:not(.js) .cabecalho__nav {
   }
 }
 
+@keyframes vitrine-pulsa {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(20 221 243 / 45%);
+    scale: 1;
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgb(20 221 243 / 0%), 0 0 22px rgb(20 221 243 / 55%);
+    scale: 1.03;
+  }
+}
+
 @keyframes item-lista {
   0%,
   6% {
@@ -2823,6 +2836,16 @@ html:not(.js) .cabecalho__nav {
     background: linear-gradient(100deg, transparent 0%, var(--color-brilho-cta) 50%, transparent 100%);
     animation: brilho-cta var(--loop-brilho-final) var(--motion-curva-padrao) infinite;
     pointer-events: none;
+  }
+
+  /* Botão "Ver modelos de sites" pulsa; para quando o mouse ou o foco está nele */
+  .oferta__link {
+    animation: vitrine-pulsa 1.8s ease-in-out infinite;
+  }
+
+  .oferta__link:hover,
+  .oferta__link:focus-visible {
+    animation-play-state: paused;
   }
 
   /* Entrada ao rolar: sobe e aparece */
